@@ -1,0 +1,60 @@
+import viajes.*
+
+describe "viajes" {
+	
+	var excursionCiudadNormal = new ExcursionACiudad(cantidadDeAtraccionesQueSeVisita = 4) 
+	var excursionCiudadTropical = new ExcursionACiudadTropical(cantidadDeAtraccionesQueSeVisita = excursionCiudadNormal.cantidadDeAtraccionesQueSeVisita())
+	
+	var excursionCiudadNormal2 = new ExcursionACiudad(cantidadDeAtraccionesQueSeVisita = 8) 
+	var excursionCiudadTropical2 = new ExcursionACiudadTropical(cantidadDeAtraccionesQueSeVisita = excursionCiudadNormal2.cantidadDeAtraccionesQueSeVisita())
+	
+	var excursionCiudadNormal3 = new ExcursionACiudad(cantidadDeAtraccionesQueSeVisita = 10)
+	var excursionCiudadTropical3 = new ExcursionACiudadTropical(cantidadDeAtraccionesQueSeVisita = excursionCiudadNormal3.cantidadDeAtraccionesQueSeVisita())
+	
+	var salida = new SalidaDeTrekking(kmDeSenderos = 100, diasDeSolPorAnio = 130)
+	var salida2 = new SalidaDeTrekking(kmDeSenderos = 50, diasDeSolPorAnio = 240)
+	var salida3 = new SalidaDeTrekking(kmDeSenderos = 250, diasDeSolPorAnio = 130)
+
+	test "excursionCiudadNormal" {
+		assert.equals(2, excursionCiudadNormal.diasDeActividad())
+		assert.notThat(excursionCiudadNormal.implicaEsfuerzo())
+		assert.notThat(excursionCiudadNormal.sirveBroncearse())
+	}
+	test "excursionCiudadTropical" {
+		assert.equals(3, excursionCiudadTropical.diasDeActividad())
+		assert.notThat(excursionCiudadTropical.implicaEsfuerzo())
+		assert.that(excursionCiudadTropical.sirveBroncearse())
+	}
+	test "excursionCiudadNormal2" {
+		assert.equals(4, excursionCiudadNormal2.diasDeActividad())
+		assert.that(excursionCiudadNormal2.implicaEsfuerzo())
+		assert.notThat(excursionCiudadNormal2.sirveBroncearse())
+	}
+	test "excursionCiudadTropical2" {
+		assert.equals(5, excursionCiudadTropical2.diasDeActividad())
+		assert.that(excursionCiudadTropical2.implicaEsfuerzo())
+		assert.that(excursionCiudadTropical2.sirveBroncearse())
+	}
+	test "excursionCiudadTropical3" {
+		assert.equals(6, excursionCiudadTropical3.diasDeActividad())
+		assert.notThat(excursionCiudadTropical3.implicaEsfuerzo())
+		assert.that(excursionCiudadTropical3.sirveBroncearse())
+	}
+	test "salida1" {
+		assert.equals(2, salida.diasDeActividad())
+		assert.that(salida.implicaEsfuerzo())
+		assert.notThat(salida.sirveBroncearse())
+	}
+	test "salida2" {
+		assert.equals(1, salida2.diasDeActividad())
+		assert.notThat(salida2.implicaEsfuerzo())
+		assert.that(salida2.sirveBroncearse())
+	}
+	test "salida3" {
+		assert.equals(5, salida3.diasDeActividad())
+		assert.that(salida3.implicaEsfuerzo())
+		assert.that(salida3.sirveBroncearse())
+	}
+}
+
+
