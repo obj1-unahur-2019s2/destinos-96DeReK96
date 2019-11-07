@@ -3,13 +3,12 @@ import viajes.*
 describe "viajes" {
 	
 	var excursionCiudadNormal = new ExcursionACiudad(cantidadDeAtraccionesQueSeVisita = 4) 
-	var excursionCiudadTropical = new ExcursionACiudadTropical(cantidadDeAtraccionesQueSeVisita = excursionCiudadNormal.cantidadDeAtraccionesQueSeVisita())
+	var excursionCiudadTropical = new ExcursionACiudadTropical(cantidadDeAtraccionesQueSeVisita = 4)
 	
 	var excursionCiudadNormal2 = new ExcursionACiudad(cantidadDeAtraccionesQueSeVisita = 8) 
-	var excursionCiudadTropical2 = new ExcursionACiudadTropical(cantidadDeAtraccionesQueSeVisita = excursionCiudadNormal2.cantidadDeAtraccionesQueSeVisita())
+	var excursionCiudadTropical2 = new ExcursionACiudadTropical(cantidadDeAtraccionesQueSeVisita = 8)
 	
-	var excursionCiudadNormal3 = new ExcursionACiudad(cantidadDeAtraccionesQueSeVisita = 10)
-	var excursionCiudadTropical3 = new ExcursionACiudadTropical(cantidadDeAtraccionesQueSeVisita = excursionCiudadNormal3.cantidadDeAtraccionesQueSeVisita())
+	var excursionCiudadTropical3 = new ExcursionACiudadTropical(cantidadDeAtraccionesQueSeVisita = 10)
 	
 	var salida = new SalidaDeTrekking(kmDeSenderos = 100, diasDeSolPorAnio = 130)
 	var salida2 = new SalidaDeTrekking(kmDeSenderos = 50, diasDeSolPorAnio = 240)
