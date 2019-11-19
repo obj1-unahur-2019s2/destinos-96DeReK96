@@ -1,0 +1,42 @@
+import socio.*
+import viajes.*
+describe "viajes" {
+	var anaRelax = new SocioRelajado(actMax = 3, edad = 12)
+	var marDePlata = new ViajeDePlaya(largoDePlaya = 200)
+	
+	
+	test "idiomas" {
+		anaRelax.agregarIdiomaQueHabla("espaniol")
+		anaRelax.agregarIdiomaQueHabla("quechua")		
+		
+		marDePlata.agregarIdioma("espaniol")
+		
+		anaRelax.registrarActividad(marDePlata)	
+		
+		assert.that(anaRelax.leAtraeAlSocio(marDePlata))
+	}
+	
+	test "idiomas2" {
+		anaRelax.agregarIdiomaQueHabla("espaniol")
+		anaRelax.agregarIdiomaQueHabla("quechua")
+		
+		marDePlata.agregarIdioma("quechua")
+		marDePlata.agregarIdioma("aymara")
+			
+		anaRelax.registrarActividad(marDePlata)
+		
+		assert.that(anaRelax.leAtraeAlSocio(marDePlata))
+		
+	}
+	test "idiomas3" {
+		anaRelax.agregarIdiomaQueHabla("espaniol")
+		anaRelax.agregarIdiomaQueHabla("quechua")
+		
+		marDePlata.agregarIdioma("frances")
+		marDePlata.agregarIdioma("italiano")
+		
+		anaRelax.registrarActividad(marDePlata)
+		
+		assert.notThat(anaRelax.leAtraeAlSocio(marDePlata))
+	}
+}

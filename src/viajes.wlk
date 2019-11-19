@@ -1,11 +1,25 @@
+import socio.*
 class Viaje {
-	var property idiomas = []
+	var property idiomas = #{}
 	method diasDeActividad()
 	method implicaEsfuerzo()
 	method sirveBroncearse()
 	method agregarIdioma(idioma) {
 		idiomas.add(idioma)
 	}
+	method sacarIdioma(idioma) {
+		idiomas.remove(idioma)
+	}
+	method esInteresante() {
+		return idiomas.size() > 1
+	}
+
+	method contengoEsteIdioma(lenguaje){
+        return idiomas.any({ idioma => idioma == lenguaje})
+    }
+    method esRecomendadaParaSocio(socio) {
+    	return self.esInteresante() and socio.leAtraeAlSocio(self) and not socio.realizoActividad(self)
+    }
 }
 
 class ViajeDePlaya inherits Viaje {
@@ -31,6 +45,10 @@ class ExcursionACiudad inherits Viaje {
 	}
 	override method sirveBroncearse() {
 		return false
+	}
+	override method esInteresante() {
+		var recorre5Atracciones = self.cantidadDeAtraccionesQueSeVisita() == 5 
+		return super() or recorre5Atracciones
 	}
 }
 
@@ -58,7 +76,22 @@ class SalidaDeTrekking inherits Viaje {
 		var limiteDeKm = kmDeSenderos > 120
 		return hayMasDe200 or hayEntre100y200 and limiteDeKm
 	}
-	
+	override method esInteresante() {
+		var ademas = diasDeSolPorAnio > 140
+		return super() and ademas
+	}
 }
 
-
+class ClaseDeGimnasia {
+	const property idiomas = #{"espaniol"}
+	const property diasDeActividad = 1
+	const property implicaEsfuerzo = true
+	const property sirveBroncearse = false
+	
+	method contengoEsteIdioma(lenguaje){
+        return idiomas.any({ idioma => idioma == lenguaje})
+    }
+    method esRecomendadaParaSocio(socio) {
+    	return socio.edad().between(20, 30)
+    }
+}

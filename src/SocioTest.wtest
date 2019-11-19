@@ -1,0 +1,28 @@
+import viajes.*
+import socio.*
+describe "Socios" {
+	
+	test "Roque" {
+		var roque = new Socio(actMax = 2, edad = 12, idiomasQueHabla = #{"ruso"})
+		var playa = new ViajeDePlaya(largoDePlaya = 1000)
+		var playa2 = new ViajeDePlaya(largoDePlaya = 2000)
+		roque.registrarActividad(playa)
+		roque.registrarActividad(playa2)
+		assert.that(roque.esAdoradorAlSol())
+		assert.equals([playa2], roque.actividadesEsforzadas())
+		assert.throwsException({roque.registrarActividad(new ClaseDeGimnasia())})
+	}
+	
+	test "Ana" {
+		var ana = new Socio(actMax = 3, edad = 12)
+		var playa = new ViajeDePlaya(largoDePlaya = 1000)
+		var playa2 = new ViajeDePlaya(largoDePlaya = 2000)
+		var gym = new ClaseDeGimnasia()
+		ana.registrarActividad(playa)
+		ana.registrarActividad(playa2)
+		ana.registrarActividad(gym)
+		assert.notThat(ana.esAdoradorAlSol())
+		assert.equals([playa2, gym] , ana.actividadesEsforzadas())
+		
+	}
+}
